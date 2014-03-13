@@ -17,7 +17,6 @@ dump.rdb
 /tmp
 /public/uploads
 /coverage
-/public/assets
 
 # Configuration
 .env
