@@ -23,8 +23,7 @@ module Homeforgrandma
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '{**}', '*.{rb,yml}').to_s]
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :en
-    config.assets.initialize_on_precompile = true
+    config.assets.initialize_on_precompile = false
     config.encoding = 'utf-8'
-    config.assets.precompile += ['style.css.scss']
   end
 end
