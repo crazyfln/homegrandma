@@ -37,6 +37,14 @@ $(document).ready(function(){
     $('.p-login').fadeIn();
     return false ;
   })
+
+  //need to be deleted later-----------
+  $("#hm-10").click(function(){
+    $('.p-login').fadeIn();
+    return false ;
+  })
+  //-----------------------------------
+  
   $(".hm-1").click(function(){
     $('.p-login').fadeOut();
     $('.p-register').fadeIn();
