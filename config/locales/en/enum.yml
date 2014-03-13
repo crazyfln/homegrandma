@@ -1,0 +1,90 @@
+en:
+  enumerize:
+    property:
+      types:
+        assisted_living: "Assisted Living"
+        independant_living: "Independant Living"
+        residential_care: "Residential Care"
+        memory_care_specialty: "Memory Care Specialty"
+        ccrc: "CCRC"
+
+      funding_accepteds:
+
+        medicare: "Medicare"
+        medicald: "Medicald"
+        ssi: "SSI"
+        ltc_insurance: "LTC Insurance"
+        va_benefits: "VA Benefits"
+        subsidized_housing: "Subsidized Housing"
+
+      care_services:
+        hospice_care:             "Hospice Care"
+        palliatative_care:        "Palliatative Care"
+        dementia_care:            "Dementia Care"
+        rehabilitation_care:      "Rehabilitation Care"
+        accepts_bedridden:        "Accepts Bedridden"
+        diabetic_management:      "Diabetic Management"
+        administer_injections:    "Administer Injections"
+        incontinence_care:        "Incontinence Care"
+        colostomy_care:           "Colostomy Care"
+        catherer_care:            "Catheter Care"
+        oxygen_care:              "Oxygen Care"
+        i_v_care:                 "I.V. Care"
+        g_tube_care:              "G-Tube Care"
+        wound_care:               "Wound Care"
+
+      feature_and_amenities:
+        planned_activities:        "Planned Activities"
+        pets_allowed:              "Pets Allowed"
+        internet_access:           "Internet Access"
+        cable_tv:                  "Cable Tv"
+        transportation_service:    "Transportation Service"
+        fitness_room:              "Fitness Room"
+        pool_or_hot_tub:           "Pool Or Hot Tub"
+        alarmed_exits:             "Alarmed Exits"
+
+      dinnings:
+        flexible_meal_times:       "Flexible Meal Times"
+        vegetarian_menu:           "Vegetarian Menu"
+        kosher_menu:               "Kosher Menu"
+        special_diets:             "Special Diets"
+        religious_services:        "Religious Services"
+
+      caregivers_languages:
+        spanish:                   "Spanish"
+        english:                   "English"
+        armenian:                  "Armenian"
+        caucasian:                 "Caucasian"
+        chinese_cantonese:         "Chinese Cantonese"
+        chinese_mandarin:          "Chinese Mandarin"
+        filipino:                  "Filipino"
+        french:                    "French"
+        german:                    "German"
+        hispanic:                  "Hispanic"
+        italian:                   "Italian"
+        japanese:                  "Japanese"
+        korean:                    "Korean"
+        other:                     "Other"
+        polish:                    "Polish"
+        portuguese:                "Portuguese"
+        romanian:                  "Romanian"
+        russian:                   "Rusian"
+        spanish:                   "Spanish"
+        swedish:                   "Swedish"
+        tagalog:                   "Tagalog"
+        taiwanese:                 "Taiwanese"
+        vietnamese:                "Vietnamese"
+
+
+      resident_ethnics:
+        japanese:                  "Japanese"
+        armenian:                  "Armenian"
+        caucasian:                 "Caucasian"
+        chinese:                   "Chinese"
+        filipino:                  "Filipino"
+        hispanic:                  "Hispanic"
+        korean:                    "Korean"
+        taiwanese:                 "Taiwanese"
+        vietnamese:                "Vietnamese"
+        chinese:                   "Chinese"
+        other:                      "Other"

@@ -1,0 +1,111 @@
+= f.input :step, :as => :hidden, :input_html => { :value => 1 }
+.info-left
+  %h2 General Info
+  %fieldset
+    %label.txt
+      %span
+        Facility Name
+        = mark_required(@property, :name)
+      = f.input :name, :label => false
+    %label.txt
+      %span
+        Facility Address
+        = mark_required(@property, :address)
+      = f.input :address, :label => false
+    %big
+      %label.lb30
+        %span
+          City
+          = mark_required(@property, :city)
+        = f.input :city, :label => false
+      %label.lbselect
+        %span
+          State
+          = mark_required(@property, :state_code)
+        %small.select
+          = f.input :state_code, :as => :select, :collection => state_code_to_select , :label => false
+
+      %label.lb20
+        %span
+          Zip
+          = mark_required(@property, :zip)
+        = f.input :zip, as: :string, :label => false
+    %label.txt
+      %span
+        Phone Number
+        = mark_required(@property, :phone_number)
+      = f.input :phone_number, as: :string, :label => false
+    %label.txt
+      %span
+        Facility Manager Name
+        = mark_required(@property, :property_manager_name)
+      = f.input :property_manager_name, :label => false
+    %label.txt.camera
+      %span
+        Facility Manager Photo
+        = mark_required(@property, :property_manager_avatar)
+      = f.input :property_manager_avatar, :label => false
+      %small
+        %a{href: "", title: "Camera"} Camera
+    %big
+      %label.lb20
+        %span
+          Capacity
+          = mark_required(@property, :capacity)
+        = f.input :capacity, as: :string, label: false
+      %label.lb20
+        %span
+          Vacancies
+          = mark_required(@property, :vacancies)
+        = f.input :vacancies, as: :string, label: false
+      %label.lb20
+        %span
+          Lic Number
+          = mark_required(@property, :license_number)
+        = f.input :license_number, as: :string, label: false
+    .radio1
+      %h3
+        Room Type
+        = mark_required(@property, :types)
+      = f.input :types, as: :check_boxes_em_label, :label => false
+
+.info-right
+  .radio2
+    %h2.mb
+      Features & Amenities
+      = mark_required(@property, :feature_and_amenities)
+    %fieldset
+      = f.input :feature_and_amenities, as: :check_boxes_em_label, :label => false, :collection_wrapper_tag => :em
+  .radio2
+    %h2
+      Care Services
+      = mark_required(@property, :care_services)
+    %fieldset
+      = f.input :care_services, as: :check_boxes_em_label, :label => false
+  .radio3
+    %h2
+      Dining & Culture
+      = mark_required(@property, :dinnings)
+    .radio3-l
+      %fieldset
+        = f.input :dinnings, as: :check_boxes_em_label, :label => false
+    / end class radio3-l
+    .radio3-r
+      %big
+        %fieldset
+          %label
+            %span
+              Our Employees Speak
+              = mark_required(@property, :caregivers_languages_1)
+            = f.input :caregivers_languages_1, as: :select, :label => false
+            = f.input :caregivers_languages_2, as: :select,:label => false
+          %label
+            %span
+              Most of our Residents are
+              = mark_required(@property, :resident_ethnics_1)
+            = f.input :resident_ethnics_1, as: :select,:label => false
+            = f.input :resident_ethnics_2, as: :select,:label => false
+.popup-cont-footer.clear
+  / %input.bt.bt-next1{type: "submit", value: "Next"}/
+  = f.submit class: "bt", value: "Next"
+  %strong Step 1 of 2

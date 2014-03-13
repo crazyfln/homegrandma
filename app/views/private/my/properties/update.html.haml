@@ -1,0 +1,30 @@
+#success-register-property
+  .popup-ok{style: "border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;"}
+    %h2 Thank You for Registering
+    %p.st We Are Launching in Summer 2014!
+    %p.ss Keep on eye on your Inboxes for exciting updates and announcements!
+    %p.sy
+      If you did NOT complete your registration this time or would
+      %br
+      like to add more photos later, just come back and login.
+    .ok-card
+      %span 1. Would you prefer to pay our referral fee by credit/debit card?
+      %label
+        %input{name: "card", type: "radio"}
+        %small Yes
+      %label
+        %input{name: "card", type: "radio"}
+        %small No
+    / end class ok-card
+    .ok-bt
+      = link_to property_path(current_user.properties.first) do
+        %input.bt{style: "border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;", type: "submit", value: "View Your Listing"}
+      %small or
+      = link_to edit_my_property_path do
+        %input.bt{style: "border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;", type: "submit", value: "Edit your Facility"}
+      %span
+        We value your Feedback & suggestion!
+        = link_to 'Contact Us', '#', title: 'Contact Us'
+    .clear
+    / end class ok-bt
+  / end class popup-cont

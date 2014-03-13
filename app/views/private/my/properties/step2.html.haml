@@ -1,0 +1,121 @@
+#singlepage
+  #new-propery-form{:style => ""}
+
+
+    - if @property.errors.present?
+      %span.m Please check following error messages:
+      %ul.alert-box
+        - @property.errors.full_messages.each do |message|
+          %li= message
+
+    = simple_nested_form_for @property, url: my_property_path, html: {multipart: true} do |f|
+      = @step1_data
+      = f.input :step, :as => :hidden, :input_html => { :value => 2 }
+      .price-l
+        %h2
+          Plan & Pricing
+        %fieldset
+          %big
+            %label
+              %span
+                Buy-in Fee
+                = mark_required(@property, :buy_in_fee)
+              = f.input :buy_in_fee, label: false, placeholder: "$"
+            %label
+              %span
+                Spouse Fee/Month
+                = mark_required(@property, :add_person_fee)
+              = f.input :add_person_fee, label: false, placeholder: "$"
+            %label
+              %span
+                Community Fee/Month
+                = mark_required(@property, :community_fee)
+              = f.input :community_fee, label: false, placeholder: "$"
+            %label
+              %span
+                Respite Fee/Month
+                = mark_required(@property, :respite_fee)
+              = f.input :respite_fee, label: false, placeholder: "$"
+            %label
+              %small
+                = f.input :accept_ssi, :class => "checkbox", :label => false, inline_label: true, :label => "Accepts SSI"
+                = mark_required(@property, :accept)
+          #room-type
+
+            .list-header
+              %span.lh-1
+                Room Type
+                = mark_required(@property, :property_room_types)
+              %span.lh-2 Price
+
+            = f.fields_for :property_room_types do |prt_f|
+              .list
+                %label.l1
+                  = prt_f.text_field :name, placeholder: "Small Bedroom"
+
+                %label.l2
+                  = prt_f.text_field :price_start_at, placeholder: "$"
+                = prt_f.link_to_remove content_tag(:span, "&times;".html_safe, class: "delete")
+            %small.add
+              = f.link_to_add "Add a Room Type", :property_room_types
+            %labeL
+              %small
+                = f.input :include_service_charge, :label_html => { :style => "color:#868585;" }, :label => false, inline_label: true, :label => "Room Type Includes Service Charge"
+          #service-types
+            .list-header
+              %span.lh-1
+                Service Type
+                = mark_required(@property, :property_service_types)
+              %span.lh-2 Price
+              = f.fields_for :property_service_types do |prt_f|
+                .list
+                  %label.l1
+                    = prt_f.text_field :name, placeholder: "Low Level Care"
+                  %label.l2
+                    = prt_f.text_field :price_start_at, placeholder: "$"
+                  = prt_f.link_to_remove content_tag(:span, "&times;".html_safe, class: "delete")
+                  %br
+                  %br
+              %small.add
+                = f.link_to_add "Add a Service Type", :property_service_types
+
+      .price-r
+        %fieldset
+          %legend
+          %h2
+            Description
+            = mark_required(@property, :description)
+          = f.text_area :description
+          %h2
+            Photos
+            = mark_required(@property, :property_photos)
+          %label
+            %span.txt Select one main listing photo
+          .clear
+          .photos-field-container
+            = f.fields_for :property_photos do |pp|
+              .photo-primary
+                = pp.input :primary, class: 'checkbox', label: false
+              .photo-drag
+                - if pp.object.photo.present?
+                  .photo-avatar
+                    = image_tag pp.object.photo.thumb.url, size: "70x58"
+                    = pp.link_to_remove content_tag(:span, "&times;".html_safe, class: "delete")
+                - else
+                  .photo-input
+                    = pp.file_field :photo, value: pp.object.try(:photo)
+                    = pp.link_to_remove content_tag(:span, "&times;".html_safe, class: "delete")
+              .clear
+
+            // link to add more photo
+            = f.link_to_add "Add a photo", :property_photos
+
+
+      / end class price-r
+      .popup-cont-footer.clear
+        = f.submit class: "bt bt-next2", value: "Submit"
+        %strong
+          Step 2 of 2
+        = link_to "<input class = \"bt bt-back\" value = \"Back\" style = \"width: 30px; margin-right: 15px\" />".html_safe, step1_my_property_path
+
+= call_js_init("initFormPropertyStep2();")

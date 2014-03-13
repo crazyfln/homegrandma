@@ -1,0 +1,75 @@
+#banner
+  .container
+    #banner-container
+      #banner-watch
+        = link_to 'Watch Our Video Intro', "http://www.youtube.com/watch?v=9A2nhjijhPs&feature=youtu.be", title: 'Watch our Video Intro', class: 'fancybox-media'
+
+      #banner-find
+        = form_for :property, url: searches_path, method: :get do |f|
+          %fieldset
+            %legend Find the perfect home for Grandma
+            %label1
+              = f.text_field :address, placeholder: "Search by City, Zip, or Property", class: 'txt'
+            / %label.lb-list
+            /   %span.green AL
+            /   %span.blue IL
+            /   %span.pink RC
+            /   %span.orange MC
+            /   %span.red NH
+            /   %span.pink2 CCRC
+            %label1
+              .select
+                = f.select :types, options_from_collection_for_select( [OpenStruct.new( { :text => "All Types"})] + facility_type_for_select, :name, :text), {}
+            %label1
+              %input.sbt{src: "/assets/banner/bt-find.png", type: "image"}
+      / end id banner-find
+
+#home-why
+  .container
+    %h2 Why Facilities Should Sign Up
+    %ul
+      %li#hw-1
+        %strong $200 Reward or Charity Donation
+        %p
+          Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
+          = succeed "Phasellus" do
+            %br
+      %li#hw-2
+        %strong Share with your family
+        %p
+          Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
+          %br
+          Phasellus aliquet dignissim sem.
+      %li#hw-3
+        %strong Save & Waitlist
+        %p
+          Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
+          %br
+          Phasellus aliquet dignissim sem.
+
+#home-featured
+  .container
+    %h2 Featured Listings
+    %ul
+      - @properties.each do |property|
+        %li
+          %em
+            %span
+              = link_to property_path(property) do
+                = image_tag property.default_photo.try(:photo).try(:thumb_grid)
+
+          %big
+            = link_to content_tag(:h3, property.display_name_and_address), property_path(property)
+            %p= truncate property.description, length: 200
+            %span.first
+              %strong Form:
+              = number_to_currency(property.price_start_at, precision: 0)
+            %span
+              %strong Type:
+              - property.types.each do |type|
+                = type.text + " | "
+            %span
+              %strong Location:
+              = property.city
+
+= call_js_init("initSearchFieldType();")

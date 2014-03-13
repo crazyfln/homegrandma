@@ -1,0 +1,223 @@
+
+.search-main
+  .filter-container
+    .show-btn-container
+      .show-filter-btn{value: ""} Show More Filters
+    .hide-btn-container
+      .hide-filter-btn Hide Filters
+    .filters-container
+      %ul{style: "list-style: none;"}
+        %li.checkbox-container{style: "float: left; margin-left: -30px;"}
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+          %label{style: "color: white; font-family: MyriadPro; margin-left: 6px;"} Assisted Living
+        %li.checkbox-container{style: "float: left; background: #33A3D7; width: 178px;"}
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+          %label{style: "color: white; font-family: MyriadPro; margin-left: 6px;"} Independant Living
+        %li.checkbox-container{style: "float: left; background: #EE789F; width: 150px;"}
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+          %label{style: "color: white; font-family: MyriadPro; margin-left: 6px;"} Residential Care
+        %li.checkbox-container{style: "float: left; background: #F0890F; width: 130px;"}
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}/
+          %label{style: "color: white; font-family: MyriadPro; margin-left: 6px;"} Memory Care
+        %li.checkbox-container{style: "float: left; background: #CA5656; width: 140px;"}
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+          %label{style: "color: white; font-family: MyriadPro; margin-left: 6px;"} Nursing Home
+        %li.checkbox-container{style: "float: left; background: #CE80DF; width: 140px; margin-right: 0px;"}
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+          %label{style: "color: white; font-family: MyriadPro; margin-left: 6px;"} Counting Care
+    .facility-container
+      %p Types of Facilities
+      %ul{style: "list-style: none;"}
+        %li
+          %input.icheck-me{checked: "checked", "data-color" => "yellow", "data-skin" => "square", id: "#input-1", type: "checkbox"}
+          %label Assisted Living
+          .color-box1
+            %h5 AL
+        %li
+          %input#check1.icheck-me{"data-color" => "blue", "data-skin" => "square", type: "checkbox"}
+          %label Independent Living
+          .color-box2
+            %h5 IC
+        %li
+          %input.icheck-me{checked: "checked", "data-color" => "orange", "data-skin" => "square", id: "#input-3", type: "checkbox"}
+          %label Residential Care Home
+          .color-box3
+            %h5 RC
+        %li
+          %input#check1.icheck-me{"data-color" => "pink", "data-skin" => "square", type: "checkbox"}
+          %label CCRC
+          .color-box4
+            %h5 CCRC
+    .filters1-container
+      %p Search Filters
+      %ul{style: "list-style: none;"}
+        %li
+          %input#check1.icheck-me{"data-color" => "yellow", "data-skin" => "square", type: "checkbox"}
+          %label Accepts Medicare
+        %li
+          %input#check1.icheck-me{checked: "checked", "data-color" => "blue", "data-skin" => "square", type: "checkbox"}
+          %label Accepts SSI
+        %li
+          %input#check1.icheck-me{"data-color" => "orange", "data-skin" => "square", type: "checkbox"}
+          %label Only Vacant Listings
+        %li
+          %input#check1.icheck-me{checked: "checked", "data-color" => "pink", "data-skin" => "square", type: "checkbox"}
+          %label Memory Care
+          .color-box5
+    .filters2-container
+      %ul{style: "list-style: none;"}
+        %li
+          %input#check1.icheck-me{checked: "checked", "data-color" => "purple", "data-skin" => "square", type: "checkbox"}
+          %label Hospice/Palliative Care
+        %li
+          %input#check1.icheck-me{"data-color" => "red", "data-skin" => "square", type: "checkbox"}
+          %label Allows Pets
+      = succeed "\u{200b}" do
+        .styled-select1
+          %select.query-type{placeholder: "Search Radius", value: ""}
+            %option Search Radius
+            %option Short Option
+            %option This Is A Longer Option
+  #tabs.ui-tabs-nav.ui-tabs-panel
+    %ul
+      %li
+        %a{href: "#tabs-1"} SEARCHED LOCATION
+      %li
+        %a{href: "#tabs-2"} GRID VIEW
+      %li.tabs-right
+        %a{href: "#tabs-3"} LOCAL INFO
+    #tabs-1.content-tab
+      .low-price-btn Low Prices First
+      .exhibitions
+        .place
+          .stamp1
+            .pic.pic1
+          .content-middle
+            .color-box1.content-color-box
+              %h5 AL
+            .color-box2.content-color-box
+              %h5 IL
+            .color-box5.content-color-box
+            %br
+            %p{style: "font-size: 18px; font-weight: 900; margin-top: 10px;"} Golden Oaks Senior Living
+            %p{style: "font-size: 16px; font-weight: 800; color: #9B9B9B; margin-bottom: 5px;"} South Pasadena, CA
+            %p{style: "font-size: 14px; font-weight: 600; color: #9B9B9B;"} Residents and their families appreciate the great energy of our dedicated and tenured team and our high-quality dining program.
+          .dark-flag
+            %p{style: "position: relative; margin: 0 0; left: 47px; top: 25px; font-size: 13px;"} FROM
+            %br
+            %p{style: "position: relative; margin: 0 0; left: 33px; top: 5px; font-size: 24px; font-weight: 900;"} $3000
+        .place
+          .stamp1
+            .pic.pic2
+          .content-middle
+            .color-box1.content-color-box
+              %h5 AL
+            %br
+            %p{style: "font-size: 18px; font-weight: 900; margin-top: 10px;"} Golden Oaks Senior Living
+            %p{style: "font-size: 16px; font-weight: 800; color: #9B9B9B; margin-bottom: 5px;"} South Pasadena, CA
+            %p{style: "font-size: 14px; font-weight: 600; color: #9B9B9B;"} Residents and their families appreciate the great energy of our dedicated and tenured team and our high-quality dining program.
+          .dark-flag
+            %p{style: "position: relative; margin: 0 0; left: 47px; top: 25px; font-size: 13px;"} FROM
+            %br
+            %p{style: "position: relative; margin: 0 0; left: 33px; top: 5px; font-size: 24px; font-weight: 900;"} $3000
+        .place
+          .stamp1
+            .pic.pic3
+          .content-middle
+            .color-box3.content-color-box
+              %h5 RC
+            %br
+            %p{style: "font-size: 18px; font-weight: 900; margin-top: 10px;"} Golden Oaks Senior Living
+            %p{style: "font-size: 16px; font-weight: 800; color: #9B9B9B; margin-bottom: 5px;"} South Pasadena, CA
+            %p{style: "font-size: 14px; font-weight: 600; color: #9B9B9B;"} Residents and their families appreciate the great energy of our dedicated and tenured team and our high-quality dining program.
+          .dark-flag
+            %p{style: "position: relative; margin: 0 0; left: 47px; top: 25px; font-size: 13px;"} FROM
+            %br
+            %p{style: "position: relative; margin: 0 0; left: 33px; top: 5px; font-size: 24px; font-weight: 900;"} $3000
+        .place
+          .stamp1
+            .pic.pic4
+          .content-middle
+            .color-box1.content-color-box
+              %h5 AL
+            .color-box2.content-color-box
+              %h5 IL
+            .color-box3.content-color-box
+              %h5 RC
+            %br
+            %p{style: "font-size: 18px; font-weight: 900; margin-top: 10px;"} Golden Oaks Senior Living
+            %p{style: "font-size: 16px; font-weight: 800; color: #9B9B9B; margin-bottom: 5px;"} South Pasadena, CA
+            %p{style: "font-size: 14px; font-weight: 600; color: #9B9B9B;"} Residents and their families appreciate the great energy of our dedicated and tenured team and our high-quality dining program.
+          .dark-flag
+            %p{style: "position: relative; margin: 0 0; left: 47px; top: 25px; font-size: 13px;"} FROM
+            %br
+            %p{style: "position: relative; margin: 0 0; left: 33px; top: 5px; font-size: 24px; font-weight: 900;"} $3000
+        .place
+          .stamp1
+            .pic.pic5
+          .content-middle
+            .color-box1.content-color-box
+              %h5 AL
+            .color-box2.content-color-box
+              %h5 IL
+            .color-box3.content-color-box
+              %h5 RC
+            %br
+            %p{style: "font-size: 18px; font-weight: 900; margin-top: 10px;"} Golden Oaks Senior Living
+            %p{style: "font-size: 16px; font-weight: 800; color: #9B9B9B; margin-bottom: 5px;"} South Pasadena, CA
+            %p{style: "font-size: 14px; font-weight: 600; color: #9B9B9B;"} Residents and their families appreciate the great energy of our dedicated and tenured team and our high-quality dining program.
+          .dark-flag
+            %p{style: "position: relative; margin: 0 0; left: 47px; top: 25px; font-size: 13px;"} FROM
+            %br
+            %p{style: "position: relative; margin: 0 0; left: 33px; top: 5px; font-size: 24px; font-weight: 900;"} $3000
+        .place
+          .stamp1
+            .pic.pic6
+          .content-middle
+            .color-box1.content-color-box
+              %h5 AL
+            .color-box2.content-color-box
+              %h5 IL
+            .color-box3.content-color-box
+              %h5 RC
+            %br
+            %p{style: "font-size: 18px; font-weight: 900; margin-top: 10px;"} Golden Oaks Senior Living
+            %p{style: "font-size: 16px; font-weight: 800; color: #9B9B9B; margin-bottom: 5px;"} South Pasadena, CA
+            %p{style: "font-size: 14px; font-weight: 600; color: #9B9B9B;"} Residents and their families appreciate the great energy of our dedicated and tenured team and our high-quality dining program.
+          .dark-flag
+            %p{style: "position: relative; margin: 0 0; left: 47px; top: 25px; font-size: 13px;"} FROM
+            %br
+            %p{style: "position: relative; margin: 0 0; left: 33px; top: 5px; font-size: 24px; font-weight: 900;"} $3000
+      .map_div
+      .expand-search
+        %form#search-form{"accept-charset" => "UTF-8", action: "/search", method: "get"}
+          .input-wrapper-map
+            .expand-btn
+            %input#map-q.ui-autocomplete-input{autocomplete: "off", name: "q", placeholder: "Expand Map", type: "text"}/
+            %span
+              %a#map-search-btn{href: "search/index"} Redo Search in Map
+        .map-filter
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}/
+          .color-box1{style: "margin-right: 10px;"}
+            %h5 AL
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}/
+          .color-box2{style: "margin-right: 10px;"}
+            %h5 IC
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}/
+          .color-box3{style: "margin-right: 10px;"}
+            %h5 RC
+          %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}/
+          .color-box4{style: "margin-right: 0px; width: 55px;"}
+            %h5 CCRC
+      .pages
+        .pre-btn{style: "font-family: Web;"}   <
+        .pg-btn.green-btn{style: "margin-left: 20px; font-size: 14px; width: 18px;"}  1
+        .pg-btn{style: "margin-left: 10px; font-size: 14px; width: 18px;"}  2
+        .pg-btn{style: "margin-left: 10px; font-size: 14px; width: 18px;"}  3
+        .dots{style: "margin-left: 10px;"} ...
+        .pg-btn{style: "margin-left: 8px; margin-right: 20px; font-size: 14px; width: 18px;"}  8
+        .pre-btn{style: "font-family: Web; width: 18px;"}   >
+    #tabs-2.content-tab
+      %p Content for Tab 2
+    #tabs-3.content-tab
+      %p Content for Tab 3

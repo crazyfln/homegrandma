@@ -1,0 +1,93 @@
+- selected_langauge = params[:property][:caregivers_languages_2] if params[:property]
+- selected_ethnic   = params[:property][:resident_ethnics_1]     if params[:property]
+- visible = params && params[:property] && (params[:property][:caregivers_languages_2].present? || params[:property][:resident_ethnics_2].present? || params[:property][:care_services].present? || params[:property][:vacant_vacility] != 0)
+- style = "display: block;" if visible
+#search-header
+  .container
+    = simple_form_for @property, url: searches_path, method: :get do |f|
+      %fieldset.sh-1
+        %label
+          = f.text_field :address, class: :txt,   placeholder: "Search by City, Zip, or Property"
+        %label
+          %span.green AL
+          %span.blue IL
+          %span.pink RC
+          %span.orange MC
+          %span.red NH
+          %span.pink2 CCRC
+        %label
+          .select
+            = f.select :types, options_from_collection_for_select( ([OpenStruct.new( { :text => "All Types"})] + facility_type_for_select), :name, :text, params[:property]['types']), {}
+
+        %label
+          %input.sbt{src: "/assets/search/sh1-sbt.png", type: "image"}
+      / end class sh-1
+
+      // advance filters
+
+
+      %fieldset.sh-2{ :style => style }
+        %label
+          %strong Caregivers 2nd Language
+          .select
+            = f.select :caregivers_languages_2, options_from_collection_for_select( [OpenStruct.new( {:name => nil, :text => "No Preference"})] + caregivers_languages_for_select, :name, :text, params[:property][:caregivers_languages_2]), {}
+
+        %label
+          %strong Most Residents Are
+          .select
+            = f.select :resident_ethnics_2, options_from_collection_for_select( [OpenStruct.new( {:name => nil, :text => "No Preference"})] + resident_ethnics_2_for_select, :name, :text, params[:property][:resident_ethnics_2]), {}
+
+        / %label.checkbox
+        /   = f.check_box :vacant_vacility
+        /   Show only Vacant Facilities
+
+        %label.checkbox
+          = f.check_box :accept_ssi
+          Accepts SSI
+
+      / end id class sh-2
+      %fieldset.sh-3{ :style => style }
+        %strong Care Services
+        = check_boxes_collection_for_search(f, care_services_for_select, :care_services)
+      %fieldset.sh-3.sh-3-bottom{ :style => style }
+        %strong Features & Amenities
+        = check_boxes_collection_for_search(f, feature_and_amenities_for_select, :feature_and_amenities)
+    #more
+      %small#search-toggler
+        = visible ? "Less Options" : "More Options"
+    / end id more
+  / end class container
+/ end id search-header
+#search
+  .container
+    %ul#search-tabs
+      %li#st-list.active
+        %a{href: "", title: "List View"} List View
+      %li#st-grid
+        %a{href: "", title: "Grid View"} Grid View
+      %li#st-local
+        %a{href: "", title: "Local Info"} Local Info
+
+    / end id search-tabs
+    #search-list
+      #sl-cont
+        = render 'list', properties: @properties
+        = paginate @properties
+
+        / end class pag
+      / end id sl-cont
+      #sl-map
+        #map-canvas{'data-latitude' => '37.7749', 'data-longitude' => '-122.4194'}
+
+      / end id sl-map
+    / end id search-list
+    #search-grid
+      = render 'grid_list', properties: @properties
+      = paginate @properties, :left => 3, :right => 1
+
+    #localinformation
+      = render 'info'
+    // end local information
+
+= call_js_init("initSearchPage();")
+= call_js_init("initSearchFieldType();")

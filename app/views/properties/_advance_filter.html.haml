@@ -1,0 +1,79 @@
+.filter-container
+  .show-btn-container
+    .show-filter-btn{value: ""} Show More Filters
+  .hide-btn-container
+    .hide-filter-btn Hide Filters
+  .filters-container
+    %ul{style: "list-style: none;"}
+      %li.checkbox-container{style: "float: left; margin-left: -30px;"}
+        %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+        %label{style: "color: white; font-family: MyriadPro; margin-left: 28px; margin-top: -23px;"} Assisted Living
+      %li.checkbox-container{style: "float: left; background: #33A3D7; width: 178px;"}
+        %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+        %label{style: "color: white; font-family: MyriadPro; margin-left: 28px; margin-top: -23px;"} Independant Living
+      %li.checkbox-container{style: "float: left; background: #EE789F; width: 150px;"}
+        %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+        %label{style: "color: white; font-family: MyriadPro; margin-left: 28px; margin-top: -23px;"} Residential Care
+      %li.checkbox-container{style: "float: left; background: #F0890F; width: 130px;"}
+        %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}/
+        %label{style: "color: white; font-family: MyriadPro; margin-left: 28px; margin-top: -23px;"} Memory Care
+      %li.checkbox-container{style: "float: left; background: #CA5656; width: 140px;"}
+        %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+        %label{style: "color: white; font-family: MyriadPro; margin-left: 28px; margin-top: -23px;"} Nursing Home
+      %li.checkbox-container{style: "float: left; background: #CE80DF; width: 140px; margin-right: 0px;"}
+        %input.icheck-me{checked: "checked", "data-color" => "grey", "data-skin" => "square", id: "", type: "checkbox"}
+        %label{style: "color: white; font-family: MyriadPro; margin-left: 28px; margin-top: -23px;"} Counting Care
+
+  .facility-container
+    %p Types of Facilities
+    %ul{style: "list-style: none;"}
+      %li
+        %input.icheck-me{checked: "checked", "data-color" => "green", "data-skin" => "square", id: "#input-1", type: "checkbox"}
+        %label Assisted Living
+        .color-box1
+          %h5 AL
+      %li
+        %input#check1.icheck-me{"data-color" => "blue", "data-skin" => "square", type: "checkbox"}
+        %label Independent Living
+        .color-box2
+          %h5 IC
+      %li
+        %input.icheck-me{checked: "checked", "data-color" => "orange", "data-skin" => "square", id: "#input-3", type: "checkbox"}
+        %label Residential Care Home
+        .color-box3
+          %h5 RC
+      %li
+        %input#check1.icheck-me{"data-color" => "pink", "data-skin" => "square", type: "checkbox"}
+        %label CCRC
+        .color-box4
+          %h5 CCRC
+  .filters1-container
+    %p Search Filters
+    %ul{style: "list-style: none;"}
+      %li
+        %input#check1.icheck-me{"data-color" => "green", "data-skin" => "square", type: "checkbox"}
+        %label Accepts Medicare
+      %li
+        %input#check1.icheck-me{checked: "checked", "data-color" => "blue", "data-skin" => "square", type: "checkbox"}
+        %label Accepts SSI
+      %li
+        %input#check1.icheck-me{"data-color" => "orange", "data-skin" => "square", type: "checkbox"}
+        %label Only Vacant Listings
+      %li
+        %input#check1.icheck-me{checked: "checked", "data-color" => "pink", "data-skin" => "square", type: "checkbox"}
+        %label Memory Care
+        .color-box5
+  .filters2-container
+    %ul{style: "list-style: none;"}
+      %li
+        %input#check1.icheck-me{checked: "checked", "data-color" => "purple", "data-skin" => "square", type: "checkbox"}
+        %label Hospice/Palliative Care
+      %li
+        %input#check1.icheck-me{"data-color" => "red", "data-skin" => "square", type: "checkbox"}
+        %label Allows Pets
+    = succeed "\u{200b}" do
+      .styled-select1
+        %select.query-type{placeholder: "Search Radius", value: ""}
+          %option Search Radius
+          %option Short Option
+          %option This Is A Longer Option

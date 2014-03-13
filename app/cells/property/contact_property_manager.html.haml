@@ -1,0 +1,68 @@
+#sp-contact
+  %h2 Contact Property Manager
+  #contact-content
+    #cc-header
+      %span.avatar
+        = image_tag @property.property_manager_avatar.thumb.url
+      %span.info
+        %h3= @property.property_manager_name
+        %blockquote "Come tour our community and meet our happy residents"
+    / end id cc-header
+    %ul#cc-tabs
+      %li.t-call.active Call Me
+      %li.t-mail Email Me
+    / end id cc-tabs
+    #cc-body
+      = simple_form_for @message, url: property_messages_path(@property.id), :method => :post do |f|
+        %fieldset
+          %label
+            %strong Name:
+            = f.input :name, :input_html => { :class => :txt }, :label => false
+          %label
+            %strong Email:
+            = f.input :email, :input_html => { :class => :txt }, :label => false
+          %label
+            %strong Estimated Move-In Date:
+            = f.input :estimated_date, :as => :string, :input_html => { :class => "txt cal datepicker" }, :label => false
+            %small.cal Calendar
+          %label
+            %strong Message:
+            = f.input :body, :input_html => { :class => :txt }, :label => false
+          %label.claim-reward
+            = f.input :claim_reward, :label => false
+            %small.reminder Remind me to Claim my $200 Reward
+          %label
+            = f.submit value: "Send Now", :class => :bt
+
+
+      #call-me
+        %strong
+          &nbsp;
+          = @property.phone_number.gsub(/\w{4}$/, '****')
+        %p
+          Click below to display facilities Direct
+          %br>/
+          Phone Number
+        %input.shownumber{src: "/assets/singlepage/shownumber.jpg", type: "image", 'data-phone-number' => @property.phone_number}
+
+      #cm-info
+        %big How to get a $200 Reward
+        %br
+        %big for using Home for Grandma
+        %ol
+          %li
+            %small 1. Contact facility for a tour.
+          %li
+            %small 2. Mention
+            = link_to 'Homeforgrandma.com', root_path
+
+
+          %li
+            %small  3. After you move in, Call 1-800-223-4232 or
+            %a{href: "", title: "Claim Reward Online"} Claim Reward Online
+
+
+      / end id call-me
+    / end id cc-body
+  / end id contact-content
+/ end id sp-contact

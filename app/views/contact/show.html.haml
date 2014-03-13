@@ -1,0 +1,44 @@
+#contact
+  #us
+    %h2{ :style => "border-top-right-radius: 5px; border-top-left-radius: 5px;" }
+      Contact Us
+    #us-content{ :style => "border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; box-shadow: rgb(204, 204, 204) 2px 2px 10px;" }
+      %strongCall
+      %big (800) 123-4567
+      %strong Drop in
+      %small
+        123 Fake Street
+        <br>
+        Fiberton, PA
+        <br>
+        91104
+      %strong E-mail
+      %small
+        #a{ :href => "", :title => "Mail-me" }
+          support@hfg.com
+
+  #message
+    %h2{style: "border-top-right-radius: 5px; border-top-left-radius: 5px;"} Send Us A Message
+    #message-content{style: "border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; box-shadow: rgb(204, 204, 204) 2px 2px 10px;"}
+      %script{:type => "text/javascript", :src => "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" }
+      #our-location{ :style => "width : 640px; height: 600px;" }
+      = simple_form_for @contact_us, url: contact_path, :html => { :class => "form" }, method: 'post' do |f|
+        %fieldset
+          %p Confused? Curious? Finding senior care can be tricky. We can help you get started, or if you have a suggestion send it our way!
+          %label
+            %strong Name
+            = f.input    :name, label: false, :input_html => { :class => "round-corner txt" }
+          %label
+            %strong Phone
+            = f.input    :phone, label: false, :input_html => { :class => "round-corner txt" }
+          %label
+            %strong Email
+            = f.input    :email, label: false, :input_html => { :class => "round-corner txt" }
+          %label
+            %strong Message
+            = f.input    :message, :input_html => {:cols => "5", :rows => "5"}, label: false
+          %label
+            = f.submit   "Send Now", :class => "sbt round-corner"
+
+
+= call_js_init("initContactPage();")

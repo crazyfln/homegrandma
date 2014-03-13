@@ -1,0 +1,50 @@
+/ .popup
+#singlepage
+
+  .register-form
+    .box-form.green
+      %h2
+        %strong Create an Account
+      = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :method => 'post', :html => {:class => "sign-up"}) do |f|
+        %fieldset
+          %label
+            %span Email
+            = f.error_notification
+            = f.input  :email, :required => false, :autofocus => true, :label => false
+          %label
+            %span Password
+            = f.input  :password, :required => false, :label => false
+            %small Minimum 4 characters
+          %big
+            = f.button :submit, 'Submit'
+
+
+  .register-form
+    .box-form
+      %h2
+        %strong Login
+      #alert= alert
+      = simple_form_for(resource, :as => resource_name, :html => {:class => "sign-in"}, :url => session_path(resource_name)) do |f|
+        %fieldset
+          %label
+            %span Email
+            = f.input  :email, :required => false, :label => false
+          %label
+            %span Password
+            = f.input  :password, :required => false, :label => false
+          %big
+            = link_to "Forgot Password?", new_user_password_path
+            = f.button :submit, "Submit"
+
+
+  .register-txt
+    %big
+      / Register your Facility today and
+      / %strong receive 50%
+      / off your first referral!
+      Please Call 
+      %strong 626-451-0023
+      so we can help list your property!
+    / %p Don’t be left out of the internet’s top senior living listing website.
+    / %p Facility full? Create an Account to start building your waitlist.
+    / %p Super Low $980 Referral Fee.

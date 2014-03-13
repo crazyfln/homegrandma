@@ -1,0 +1,56 @@
+!!!
+%html{dir: "ltr", lang: "pt-br", "xml:lang" => "pt-br", xmlns: "http://www.w3.org/1999/xhtml"}
+  %head
+    %meta{content: "text/html;charset=utf-8", "http-equiv" => "content-type"}
+    %meta{content: "width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0", name: "viewport"}
+    %title Home For Grandma
+    = stylesheet_link_tag "application"
+    %link{href: "http://fonts.googleapis.com/css?family=Lobster+Two:400italic", rel: "stylesheet", type: "text/css"}
+    %link{href: "http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic", rel: "stylesheet", type: "text/css"}
+    = csrf_meta_tags
+
+
+  %body
+    = render "/shared/header"
+    // Content Should be here
+    = yield
+    = render "/shared/footer"
+
+    // Javascript
+    = render "/shared/javascript"
+    // -- end javascript ---
+
+
+    // Session
+    .popup.p-login
+      .popup-cont.popup-register
+        %sub.cl Fechar
+        .register-form
+          %h2
+            %strong Login
+            %small
+              or
+              = link_to "Create An Account", new_user_registration_path
+          = simple_form_for "user", :url => user_session_path do |f|
+            %fieldset
+              %label
+                %span Email Address
+                = f.input :email, :label => false
+              %label
+                %span Password
+                = f.input :password, :label => false
+                %small Set a password to create an account if you don’t have one.
+              %big
+                = link_to "Forgot Password?", new_user_password_path
+                = f.submit :class => :bt, :value => "Submit"
+        .register-txt
+          %big
+            Please Call 
+            %strong 626-451-0023
+            so we can help list your property!
+          /   Register your Facility today and
+          /   %strong receive 50%
+          /   off your first referral!
+          / %p Don’t be left out of the internet’s top senior living listing website.
+          / %p Facility full? Create an Account to start building your waitlist.
+          / %p Super Low $980 Referral Fee.

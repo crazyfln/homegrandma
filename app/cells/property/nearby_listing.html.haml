@@ -1,0 +1,20 @@
+#sp-listing
+  %h2 Nearby Listing
+  #listing-content
+    %ul
+      - @properties.take(6).each do |property|
+        %li
+          %span.legend
+            - property.types.each do |type|
+              - object = property_type_code(type)
+              %small{class: object[:color]}
+                = object[:code]
+
+          %h3= link_to property.name, property_path(property)
+          %strong= property.city
+          %big
+            %span
+              = link_to property_path(property) do
+                = image_tag (property.default_photo).try(:photo).try(:thumb)
+          %span.value
+            %small= number_to_currency(property.price_start_at, precision: 0)

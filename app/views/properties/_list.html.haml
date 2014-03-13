@@ -1,0 +1,28 @@
+%ul#sl-cont-list
+  - properties.each do |property|
+    %li{'data-latitude' => property.latitude, 'data-longitude' => property.longitude, 'data-property-name' => property.name}
+      %sub
+        = link_to property_path(property) do
+          = image_tag property.default_photo.try(:photo).try(:thumb)
+      %big
+        %sup{class: (user_signed_in? && current_user.like_property?(property) ? 'active' : '')}
+          = link_to "Like", like_property_path(property.id), :method => :post, :remote => true, :id => "listing-like-#{property.id}", title: (user_signed_in? && current_user.like_property?(property) ? 'Remove from Favorites' : 'Save to Favorites')
+
+        %span.lb
+          - property.types.each do |type|
+            - if type == 'assisted_living'
+              %small.lb-bt.green AL
+            - if type == 'independant_living'
+              %small.lb-bt.blue IL
+            - if type == 'memory_care_specialty'
+              %small.lb-bt.orange MC
+            - if type == 'residential_care'
+              %small.lb-bt.pink RC
+            - if type == 'ccrc'
+              %small.lb-bt.pink CCRC
+        / end class lb
+        = link_to content_tag(:h2, property.name), property_path(property)
+        %h3= property.city
+        %p= truncate property.description, length: 200
+      %span.value
+        %small= number_to_currency(property.price_start_at, precision: 0)

@@ -1,0 +1,4 @@
+
+@initNyroModal = ()->
+  $('.nyroModal').nyroModal()
+

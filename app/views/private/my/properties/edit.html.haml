@@ -1,0 +1,12 @@
+#singlepage
+  #new-propery-form
+    - if @property.errors.present?
+      %span.m Please check following error messages:
+      %ul.alert-box
+        - @property.errors.full_messages.each do |message|
+          %li= message
+
+    = simple_form_for @property, url: step2_my_property_path, method: 'post', html: {multipart: true}  do |f|
+      = render 'form_step1', f: f, property: @property
+
+= call_js_init("initFormPropertyStep1();")

@@ -1,0 +1,12 @@
+#singlepage
+  .forgot-password-form
+    %h2
+      %strong Forgot Password
+    = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+      %fieldset
+        .left
+          = f.input :email, :required => true, :autofocus => true, :label => false, :error => false
+          = f.error :email
+        .left
+          %big
+            = f.submit class: "bt", value: "Submit"

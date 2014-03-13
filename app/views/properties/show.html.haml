@@ -1,0 +1,237 @@
+#singlepage
+  #sp-header
+    %sup
+      = link_to "Back to listing", searches_path
+    %big
+      %strong= number_to_currency(@property.price_start_at, precision: 0)
+    %div
+      %h2= @property.name
+      %h3
+        = @property.address.gsub(/(\. ?+)||(\s+)/, "") + ", "
+        = @property.city + ", " + @property.state_code.to_s + ", "
+        = @property.zip
+      %span
+        %small.like{class: (user_signed_in? && current_user.like_property?(@property) ? 'active' : '')}
+          = link_to "Like", like_property_path(@property.id), :method => :post, :remote => true, :id => "detail-listing-like-#{@property.id}", title: (user_signed_in? && current_user.like_property?(@property) ? 'Remove from Favorites' : 'Save to Favorites')
+        %small.time
+          %a{href: "#", title: "Wait List"} Time
+        - @property.types.each do |type|
+          - object = property_type_code(type)
+          %small.bt{class: object[:color]}= link_to object[:code], '#'
+          &nbsp;
+  / end id sp-header
+  #sp-left
+    #cycle
+      %ul#cycle-list
+        - if @property.property_photos.present?
+          - @property.property_photos.each do |pp|
+            %li
+              = image_tag pp.photo.preview.url, :alt => @property.name
+              %img{alt: "Img", src: "/assets/_temp/11.jpg"}
+        - else
+          %li
+            = image_tag PropertyPhoto.new.photo.preview.url, :alt => @property.name
+            %img{alt: "Img", src: "/assets/_temp/11.jpg"}
+
+
+      / end cycle-list
+      %span#cycle-right Next
+      %span#cycle-left Prev
+      / %span#cycle-counter
+    / end id cycle
+    #sp-container
+      %ul#sp-tabs
+        %li.t-pricing.active
+          %a{href: "#", title: "Pricing"} Pricing
+        %li.t-overview
+          %a{href: "#", title: "Overview"} Overview
+        %li.t-care
+          %a{href: "#", title: "Care"} Care
+        %li.t-features
+          %a{href: "#", title: "Features"} Features
+        %li.t-culture
+          %a{href: "#", title: "Culture"} Map
+
+      / end id sp-tabs
+      #sp-content
+        #sp-content-pricing.tab-content
+          .t1
+            %strong.name Room Type
+            %strong.price Price
+            .claer
+            %ul
+              - @property.property_room_types.each do |room|
+                %li
+                  %span.name
+                    %span.sp-c-f-i
+                      %label
+                        = room.name
+                  %span.price
+                    %span.sp-c-f-i
+                      %label
+                        = number_to_currency(room.price_start_at, precision: 0)
+
+          .clear
+          .t1
+            %strong.name Service Type
+            %strong.price Price
+            .claer
+            %ul
+              - @property.property_service_types.each do |service|
+                %li
+                  %span.name
+                    %span.sp-c-f-i
+                      %label
+                        = service.name
+                  %span.price
+                    %span.sp-c-f-i
+                      %label
+                        = number_to_currency(service.price_start_at, precision: 0)
+
+          .clear
+          .t1
+            %strong.name Other Fees
+            %strong.price Price
+            .claer
+            %ul
+              %li
+                %span.name
+                  %span.sp-c-f-i
+                    %label Buy In Fee
+                %span
+                  %span.price
+                    %span.sp-c-f-i
+                      %label
+                        = number_to_currency(@property.buy_in_fee, precision: 0)
+              %li
+                %span.name
+                  %span.sp-c-f-i
+                    %label Spouse Fee/Month
+                %span
+                  %span.price
+                    %span.sp-c-f-i
+                      %label
+                        = number_to_currency(@property.add_person_fee, precision: 0)
+              %li
+                %span.name
+                  %span.sp-c-f-i
+                    %label Community Fee/Month
+                %span
+                  %span.price
+                    %span.sp-c-f-i
+                      %label
+                        = number_to_currency(@property.community_fee, precision: 0)
+              %li
+                %span.name
+                  %span.sp-c-f-i
+                    %label Respite Fee/Month
+                %span.price
+                  %span.sp-c-f-i
+                    %label
+                      = number_to_currency(@property.respite_fee, precision: 0)
+
+
+            .clear
+            %ul
+              %li
+                %label
+                  %input{type: "checkbox", checked: (@property.accept_ssi), disabled: true}
+                  We Accept SSI
+
+
+
+        #sp-content-overview.tab-content
+          %h2 Description
+          %div.license-capacity-info
+            %span.capacity
+              Capacity:
+              = @property.capacity.present? ? @property.capacity : 'N/A'
+            %span.license
+              Lisence number:
+              = "#{(@property.license_number.present? ?  @property.license_number : 'N/A')}"
+            .clear
+
+          %p
+            = @property.description
+        / end id sp-content-overview
+
+        #sp-content-care.tab-content
+          %h2 Care Services
+          = property_checkboxes_for_singlepage(Enum::Property::CARE_SERVICES[:options], "care_services", 7, @property.care_services )
+
+        #sp-content-features.tab-content
+          %h2 Features & Amenities
+          = property_checkboxes_for_singlepage(Enum::Property::FEATURE_AND_AMENITIES[:options], "feature_and_amenities", 4, @property.feature_and_amenities )
+          - if @property.dinnings.present?
+            %h2.t2 Dining & Culture
+            %ul
+              - Enum::Property::DINNINGS[:options].each do |dinning|
+                %li
+                  %label
+                    %input{type: "checkbox", checked: (@property.dinnings.include?(dinning.to_s)), disabled: true}
+                    = I18n.t("enumerize.property.dinnings.#{dinning}")
+
+          .sp-content-features-info
+            %strong Our Caregivers Speak (other than english)
+            - if @property.caregivers_languages_1.present?
+              %span.sp-c-f-i
+                %label
+                  %input{type: "checkbox", checked: true, disabled: true}
+                  = @property.caregivers_languages_1_text
+            - if @property.caregivers_languages_2.present?
+              %span.sp-c-f-i
+                %label
+                  %input{type: "checkbox", checked: true, disabled: true}
+                  = @property.caregivers_languages_2_text
+            %strong Most of our Residents are
+            - if @property.resident_ethnics_1.present?
+              %span.sp-c-f-i
+                %label
+                  %input{type: "checkbox", checked: true, disabled: true}
+                  = @property.resident_ethnics_1_text
+            - if @property.resident_ethnics_2.present?
+              %span.sp-c-f-i
+                %label
+                  %input{type: "checkbox", checked: true, disabled: true}
+                  = @property.resident_ethnics_2_text
+
+        / end id sp-content-features
+        #sp-content-culture.tab-content
+          %div#property_location{ :style => " width: 600px; height:400px; margin: 0px; padding: 0px", 'data-latitude' => @property.latitude, 'data-longitude' => @property.longitude, 'data-name' => @property.name}
+
+        / end id sp-content-culture
+      / end id sp-content
+    / end id sp-container
+    #sp-comments
+      %ul#sp-c-tabs
+        %li.t-meet.active
+          %a{href: "#", title: "Meet Our Staff"} Meet Our Staff
+        %li.t-test
+          %a{href: "#", title: "Testimonials"} Testimonials
+      / end id sp-c-tabs
+      / #sp-c-content
+      /   %ul
+      /     - @staffs.each do |staff|
+      /       %li
+      /         %big
+      /           %span
+      /             = image_tag(staff.avatar.thumb.url, alt: "Avatar")
+      /         %div
+      /           %p Masih Bohong Bohongan, consectetur adipiscing elit. Nunc ut turpis sit amet risus euismod auctor euismod pretium nisi. Ut viverra, libero in pharetra posuere, erat nibh semper risus, id sodales neque eros in nisl. Nam sit amet sapien eleifend, blandit justo vel, convallis libero.
+      /           %strong= staff.email
+      / #sp-c-test
+      /   %ul
+      /     - @staffs.each do |staff|
+      /       %li
+      /         %div
+      /           %p Masih Bohong Bohongan, consectetur adipiscing elit. Nunc ut turpis sit amet risus euismod auctor euismod pretium nisi. Ut viverra, libero in pharetra posuere, erat nibh semper risus, id sodales neque eros in nisl. Nam sit amet sapien eleifend, blandit justo vel, convallis libero.
+      /           %strong= staff.email
+
+      = render 'properties/sp_c_content'
+      = render 'properties/sp_c_test'
+  #sp-right
+    = render_cell(:property, :contact_property_manager, :property_id => @property.id)
+    = render_cell(:property, :nearby_listing)
+
+
+= call_js_init("initDetailProperty();")

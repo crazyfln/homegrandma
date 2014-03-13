@@ -1,0 +1,13 @@
+#header
+  .container
+    %h1
+      = link_to 'Home for Grandma', root_path
+    %ul#header-menu-alt
+      %li= link_to 'List your Property', step1_my_property_path, class: '#hm-3'
+      - if user_signed_in?
+        %li
+          = link_to 'Logout', destroy_user_session_path, :method => :delete
+      - elsif (controller.class != "Devise::SessionsController" && controller.action_name != "new")
+        %li
+          = link_to 'Login', new_user_session_path, id: 'hm-2', class: 'login-link'
+
