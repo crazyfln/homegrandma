@@ -5,11 +5,13 @@ CarrierWave.configure do |config|
     :aws_access_key_id      => 'AKIAICT7MVR5HKKZX56A',          # required
     :aws_secret_access_key  => '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',          # required
     # :aws_secret_access_key  => ENV['AWS_SECRET_KEY'],          # required
-    :region                 => ENV['AWS_REGION']              # optional, defaults to 'us-east-1'
+    :region                 => 'us-east-1'              # optional, defaults to 'us-east-1'
+    # :region                 => ENV['AWS_REGION']              # optional, defaults to 'us-east-1'
     # :host                   => 's3.example.com',             # optional, defaults to nil
     # :endpoint               => 'http://s3-us-west-2.amazonaws.com' # optional, defaults to nil
   }
-  config.fog_directory  = ENV['AWS_BUCKET']                       # required
+  config.fog_directory  = 'homeforgrandma'                       # required
+  # config.fog_directory  = ENV['AWS_BUCKET']                       # required
   config.fog_public     = true                                    # optional, defaults to true
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
 
