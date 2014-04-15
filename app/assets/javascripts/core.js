@@ -296,24 +296,24 @@ $(document).ready(function () {
     $('#easyTooltip').shadow('2px 2px 5px #ccc');
 });
 
-// $(window).scroll(function () {
-//     if ($(window).scrollTop() > 320) {
-//         $('#sl-map').css({
-//             position: 'absolute',
-//             'top': '20px',
-//             'left': '50%',
-//             'margin-left': '167px'
-//         });
-//         $('.sh-2, .sh-3').slideUp();
-//     } else {
-//         $('#sl-map').css({
-//             position: 'absolute',
-//             'top': 0,
-//             'left': '0',
-//             'margin-left': 0
-//         });
-//     }
-// });
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 320) {
+        $('#sl-map').css({
+            position: 'fixed',
+            'top': '20px',
+            'left': '50%',
+            'margin-left': '167px'
+        });
+        $('.sh-2, .sh-3').slideUp();
+    } else {
+        $('#sl-map').css({
+            position: 'relative',
+            'top': 0,
+            'left': '0',
+            'margin-left': 0
+        });
+    }
+});
 
 function onAfter(curr, next, opts) {
     var caption = (opts.currSlide + 1) + ' / ' + opts.slideCount;

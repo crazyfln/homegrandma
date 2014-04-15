@@ -8,44 +8,44 @@
         = form_for :property, url: searches_path, method: :get do |f|
           %fieldset
             %legend Find the perfect home for Grandma
-            %label1
-              = f.text_field :address1, placeholder: "Search by City, Zip, or Property", class: 'txt'
-            / %label.lb-list
-            /   %span.green AL
-            /   %span.blue IL
-            /   %span.pink RC
-            /   %span.orange MC
-            /   %span.red NH  
-            /   %span.pink2 CCRC
-            %label1
+            %label
+              = f.text_field :address, placeholder: "Search by City, Zip, or Property", class: 'txt'
+            %label.lb-list
+              %span.green AL
+              %span.blue IL
+              %span.pink RC
+              %span.orange MC
+              %span.red NH
+              %span.pink2 CCRC
+            %label
               .select
                 = f.select :types, options_from_collection_for_select( [OpenStruct.new( { :text => "All Types"})] + facility_type_for_select, :name, :text), {}
-            %label1
+            %label
               %input.sbt{src: "/assets/banner/bt-find.png", type: "image"}
       / end id banner-find
 
 #home-why
   .container
-    %h2 Why Users Should Sign Up
+    %h2 Why Facilities Should Sign Up
     %ul
       %li#hw-1
         %strong $200 Reward or Charity Donation
-        / %p
-        /   Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
-        /   = succeed "Phasellus" do
-        /     %br
+        %p
+          Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
+          = succeed "Phasellus" do
+            %br
       %li#hw-2
         %strong Share with your family
-        / %p
-        /   Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
-        /   %br
-        /   Phasellus aliquet dignissim sem.
+        %p
+          Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
+          %br
+          Phasellus aliquet dignissim sem.
       %li#hw-3
         %strong Save & Waitlist
-        / %p
-        /   Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
-        /   %br
-        /   Phasellus aliquet dignissim sem.
+        %p
+          Duis eleifend elit non quam dictum quis dignissim dui eleifend. Vivamus sit amet urna nulla, bibendum aliquet urna.
+          %br
+          Phasellus aliquet dignissim sem.
 
 #home-featured
   .container
